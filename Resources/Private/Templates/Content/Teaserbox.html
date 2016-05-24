@@ -1,0 +1,36 @@
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"
+	xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+	xmlns:flux="http://typo3.org/ns/FluidTYPO3/Flux/ViewHelpers"
+	xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers">
+
+	<f:layout name="Content" />
+
+	<f:section name="Configuration">
+		<flux:form id="contactbox" options="{group: 'FCE'}" label="Teaserbox">
+			<flux:field.file name="teaserbox-image" allowed="jpg, jpeg, png, gif" maxItems="1" showThumbnails="1" required="true" label="Teaserbox: Bild" />
+			<flux:field.input name="teaserbox-title" required="true" label="Teaserbox: Titel" />
+			<flux:field.text name="teaserbox-text" required="true" label="Teaserbox: Text" />
+			<flux:field.input name="teaserbox-link" required="true" label="Teaserbox: Link">
+				<flux:wizard.link activeTab="'page'" />
+			</flux:field.input>
+		</flux:form>
+	</f:section>
+
+	<f:section name="Preview">
+		<p><strong>Teaserbox:</strong></p>
+		<!-- If you wish, place custom backend preview content here -->
+		<p>{teaserbox-title}<br />{teaserbox-text}</p>
+		<flux:widget.grid />
+	</f:section>
+
+	<f:section name="Main">
+		<f:if condition="{teaserbox-title}">
+			<div class="teaser-box">
+				<img class="teaser-img margin-bottom-10" alt="Put an ALT Message in here!" src="{teaserbox-image}" />
+				<h3 class="margin-bottom-10">{teaserbox-title}</h3>
+				<p class="margin-bottom-10">{teaserbox-text}</p>
+				<a href="<v:uri.typolink configuration="{parameter: teaserbox-link}"></v:uri.typolink>" class="read-more btn btn-primary " title="Read more">Mehr lesen</a>
+			</div>
+		</f:if>
+	</f:section>
+</div>

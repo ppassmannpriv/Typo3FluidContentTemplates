@@ -1,0 +1,274 @@
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"
+	xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+	xmlns:flux="http://typo3.org/ns/FluidTYPO3/Flux/ViewHelpers"
+	xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers">
+
+	<f:layout name="Content" />
+
+	<f:section name="Configuration">
+		<flux:form id="table" options="{group: 'FCE'}" label="Tabelle">
+			<flux:field.select name="columns" default="3" items="{2: '2 Spalten', 3: '3 Spalten', 4: '4 Spalten', 5: '5 Spalten', 6: '6 Spalten', 7: '7 Spalten'}" required="true" requestUpdate="true" />
+
+					<f:switch expression="{columns}">
+						<f:case value="2">
+							<v:iterator.for from="1" to="2" iteration="i">
+								<flux:field.input name="th{i.index}" required="true" label="Tabellenkopf {i.index}" />
+							</v:iterator.for>
+						</f:case>
+						<f:case value="3">
+							<v:iterator.for from="1" to="3" iteration="i">
+								<flux:field.input name="th{i.index}" required="true" label="Tabellenkopf {i.index}" />
+							</v:iterator.for>
+						</f:case>
+						<f:case value="4">
+							<v:iterator.for from="1" to="4" iteration="i">
+								<flux:field.input name="th{i.index}" required="true" label="Tabellenkopf {i.index}" />
+							</v:iterator.for>
+						</f:case>
+						<f:case value="5">
+							<v:iterator.for from="1" to="5" iteration="i">
+								<flux:field.input name="th{i.index}" required="true" label="Tabellenkopf {i.index}" />
+							</v:iterator.for>
+						</f:case>
+						<f:case value="6">
+							<v:iterator.for from="1" to="6" iteration="i">
+								<flux:field.input name="th{i.index}" required="true" label="Tabellenkopf {i.index}" />
+							</v:iterator.for>
+						</f:case>
+						<f:case value="7">
+							<v:iterator.for from="1" to="7" iteration="i">
+								<flux:field.input name="th{i.index}" required="true" label="Tabellenkopf {i.index}" />
+							</v:iterator.for>
+						</f:case>
+						<f:case default="2">
+							<v:iterator.for from="1" to="2" iteration="i">
+								<flux:field.input name="th{i.index}" required="true" label="Tabellenkopf {i.index}" />
+							</v:iterator.for>
+						</f:case>
+					</f:switch>
+
+			<flux:form.section name="table-rows" label="Tabellenzeile">
+				<flux:form.object name="row">
+				<f:switch expression="{columns}">
+					<f:case value="2">
+						<v:iterator.for from="1" to="2" iteration="i">
+							<flux:field.input name="td{i.index}" required="true" label="Tabellenspalte {i.index}" />
+						</v:iterator.for>
+					</f:case>
+					<f:case value="3">
+						<v:iterator.for from="1" to="3" iteration="i">
+							<flux:field.input name="td{i.index}" required="true" label="Tabellenspalte {i.index}" />
+						</v:iterator.for>
+					</f:case>
+					<f:case value="4">
+						<v:iterator.for from="1" to="4" iteration="i">
+							<flux:field.input name="td{i.index}" required="true" label="Tabellenspalte {i.index}" />
+						</v:iterator.for>
+					</f:case>
+					<f:case value="5">
+						<v:iterator.for from="1" to="5" iteration="i">
+							<flux:field.input name="td{i.index}" required="true" label="Tabellenspalte {i.index}" />
+						</v:iterator.for>
+					</f:case>
+					<f:case value="6">
+						<v:iterator.for from="1" to="6" iteration="i">
+							<flux:field.input name="td{i.index}" required="true" label="Tabellenspalte {i.index}" />
+						</v:iterator.for>
+					</f:case>
+					<f:case value="7">
+						<v:iterator.for from="1" to="7" iteration="i">
+							<flux:field.input name="td{i.index}" required="true" label="Tabellenspalte {i.index}" />
+						</v:iterator.for>
+					</f:case>
+					<f:case default="2">
+						<v:iterator.for from="1" to="2" iteration="i">
+							<flux:field.input name="td{i.index}" required="true" label="Tabellenspalte {i.index}" />
+						</v:iterator.for>
+					</f:case>
+				</f:switch>
+				</flux:form.object>
+			</flux:form.section>
+
+		</flux:form>
+	</f:section>
+
+	<f:section name="Preview">
+		<!-- If you wish, place custom backend preview content here -->
+		<p><strong>Tabelle:</strong></p>
+		<p>Spalten: {columns->f:count()}</p>
+		<p>Zeilen: {table-rows->f:count()}</p>
+		<flux:widget.grid />
+	</f:section>
+
+	<f:section name="Main">
+		<f:if condition="{record.header}">
+			<f:then>
+				<h2><span>{record.header}</span></h2>
+			</f:then>
+		</f:if>
+		<f:if condition="{columns}">
+		<div class="table-responsive full-width">
+			<table class="table table-bordered table-striped table-vertical-middle green-header">
+			<f:switch expression="{columns}">
+				<f:case value="2">
+					<thead>
+						<th>{th1}</th>
+						<th>{th2}</th>
+					</thead>
+					<f:if condition="{table-rows}">
+						<f:then>
+							<tbody>
+							<f:for each="{table-rows}" as="row" iteration="iteration">
+								<tr>
+									<td>{row.row.td1}</td>
+									<td>{row.row.td2}</td>
+								</tr>
+							</f:for>
+							</tbody>
+						</f:then>
+					</f:if>
+				</f:case>
+				<f:case value="3">
+					<thead>
+						<th>{th1}</th>
+						<th>{th2}</th>
+						<th>{th3}</th>
+					</thead>
+					<f:if condition="{table-rows}">
+						<f:then>
+							<tbody>
+							<f:for each="{table-rows}" as="row" iteration="iteration">
+								<tr>
+									<td>{row.row.td1}</td>
+									<td>{row.row.td2}</td>
+									<td>{row.row.td3}</td>
+								</tr>
+							</f:for>
+							</tbody>
+						</f:then>
+					</f:if>
+				</f:case>
+				<f:case value="4">
+					<thead>
+						<th>{th1}</th>
+						<th>{th2}</th>
+						<th>{th3}</th>
+						<th>{th4}</th>
+					</thead>
+					<f:if condition="{table-rows}">
+						<f:then>
+							<tbody>
+							<f:for each="{table-rows}" as="row" iteration="iteration">
+								<tr>
+									<td>{row.row.td1}</td>
+									<td>{row.row.td2}</td>
+									<td>{row.row.td3}</td>
+									<td>{row.row.td4}</td>
+								</tr>
+							</f:for>
+							</tbody>
+						</f:then>
+					</f:if>
+				</f:case>
+				<f:case value="5">
+					<thead>
+						<th>{th1}</th>
+						<th>{th2}</th>
+						<th>{th3}</th>
+						<th>{th4}</th>
+						<th>{th5}</th>
+					</thead>
+					<f:if condition="{table-rows}">
+						<f:then>
+							<tbody>
+							<f:for each="{table-rows}" as="row" iteration="iteration">
+								<tr>
+									<td>{row.row.td1}</td>
+									<td>{row.row.td2}</td>
+									<td>{row.row.td3}</td>
+									<td>{row.row.td4}</td>
+									<td>{row.row.td5}</td>
+								</tr>
+							</f:for>
+							</tbody>
+						</f:then>
+					</f:if>
+				</f:case>
+				<f:case value="6">
+					<thead>
+						<th>{th1}</th>
+						<th>{th2}</th>
+						<th>{th3}</th>
+						<th>{th4}</th>
+						<th>{th5}</th>
+						<th>{th6}</th>
+					</thead>
+					<f:if condition="{table-rows}">
+						<f:then>
+							<tbody>
+							<f:for each="{table-rows}" as="row" iteration="iteration">
+								<tr>
+									<td>{row.row.td1}</td>
+									<td>{row.row.td2}</td>
+									<td>{row.row.td3}</td>
+									<td>{row.row.td4}</td>
+									<td>{row.row.td5}</td>
+									<td>{row.row.td6}</td>
+								</tr>
+							</f:for>
+							</tbody>
+						</f:then>
+					</f:if>
+				</f:case>
+				<f:case value="7">
+					<thead>
+						<th>{th1}</th>
+						<th>{th2}</th>
+						<th>{th3}</th>
+						<th>{th4}</th>
+						<th>{th5}</th>
+						<th>{th6}</th>
+						<th>{th7}</th>
+					</thead>
+					<f:if condition="{table-rows}">
+						<f:then>
+							<tbody>
+							<f:for each="{table-rows}" as="row" iteration="iteration">
+								<tr>
+									<td>{row.row.td1}</td>
+									<td>{row.row.td2}</td>
+									<td>{row.row.td3}</td>
+									<td>{row.row.td4}</td>
+									<td>{row.row.td5}</td>
+									<td>{row.row.td6}</td>
+									<td>{row.row.td7}</td>
+								</tr>
+							</f:for>
+							</tbody>
+						</f:then>
+					</f:if>
+				</f:case>
+				<f:case default="2">
+					<thead>
+						<th>{th1}</th>
+						<th>{th2}</th>
+					</thead>
+					<f:if condition="{table-rows}">
+						<f:then>
+							<tbody>
+							<f:for each="{table-rows}" as="row" iteration="iteration">
+								<tr>
+									<td>{td1}</td>
+									<td>{td2}</td>
+								</tr>
+							</f:for>
+							</tbody>
+						</f:then>
+					</f:if>
+				</f:case>
+			</f:switch>
+			</table>
+		</div>
+		</f:if>
+	</f:section>
+</div>

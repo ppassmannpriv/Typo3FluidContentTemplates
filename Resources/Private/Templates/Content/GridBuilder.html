@@ -1,0 +1,238 @@
+{namespace flux=FluidTYPO3\Flux\ViewHelpers}
+{namespace v=FluidTYPO3\Vhs\ViewHelpers}
+<f:layout name="Content"/>
+
+<f:section name="Configuration">
+  <flux:form id="gridBuilder" options="{group: 'Layout', icon: '{f:uri.resource(path: \'Icons/ext_icon.gif\')}'}" label="Gridbuilder">
+    <!-- Grid Select -->
+    <flux:field.select name="layout" items="{1: '12x1', 2: '6x2', 3: '4x3', 4: '3x4', 5: '5x5', 6: '4+8', 7: '3+9', 8: '6+6', 9: '1x12'}" default="1" />
+    <flux:field.select name="color" items="{1: 'transparent', 2: 'grau'}" default="1" />
+
+    <!-- Grid-builder -->
+    <flux:grid>
+      <flux:grid.row>
+        <f:if condition="{layout} == 1">
+          <f:then>
+            <v:iterator.for from="1" to="12" iteration="i" step="1">
+              <flux:grid.column
+              style="width:{v:math.division(a: 100, b: 12) -> v:math.round(decimals: 12)}%; margin-right: .3%;"
+              name="col{i.index}"
+              label="Column-{i.index}">
+              <flux:form.variable name="Fluidcontent" value="{deniedContentTypes: 'ikvaachen:GridBuilder.html, ikvaachen:Swiper.html'}" />
+              </flux:grid.column>
+            </v:iterator.for>
+          </f:then>
+        </f:if>
+        <f:if condition="{layout} == 2">
+          <f:then>
+            <v:iterator.for from="1" to="6" iteration="i" step="1">
+              <flux:grid.column
+              style="width:{v:math.division(a: 100, b: 6) -> v:math.round(decimals: 12)}%; margin-right: .3%;"
+              name="col{i.index}"
+              label="Column-{i.index}">
+              <flux:form.variable name="Fluidcontent" value="{deniedContentTypes: 'ikvaachen:GridBuilder.html, ikvaachen:Swiper.html'}" />
+              </flux:grid.column>
+            </v:iterator.for>
+          </f:then>
+        </f:if>
+        <f:if condition="{layout} == 3">
+          <f:then>
+            <v:iterator.for from="1" to="4" iteration="i" step="1">
+              <flux:grid.column
+              style="width:{v:math.division(a: 100, b: 4) -> v:math.round(decimals: 12)}%; margin-right: .3%;"
+              name="col{i.index}"
+              label="Column-{i.index}">
+              <flux:form.variable name="Fluidcontent" value="{deniedContentTypes: 'ikvaachen:GridBuilder.html, ikvaachen:Swiper.html'}" />
+              </flux:grid.column>
+            </v:iterator.for>
+          </f:then>
+        </f:if>
+        <f:if condition="{layout} == 4">
+          <f:then>
+            <v:iterator.for from="1" to="3" iteration="i" step="1">
+              <flux:grid.column
+              style="width:{v:math.division(a: 100, b: 3) -> v:math.round(decimals: 12)}%; margin-right: .3%;"
+              name="col{i.index}"
+              label="Column-{i.index}">
+              <flux:form.variable name="Fluidcontent" value="{deniedContentTypes: 'ikvaachen:GridBuilder.html, ikvaachen:Swiper.html'}" />
+              </flux:grid.column>
+            </v:iterator.for>
+          </f:then>
+        </f:if>
+        <f:if condition="{layout} == 5">
+          <f:then>
+            <v:iterator.for from="1" to="5" iteration="i" step="1">
+              <flux:grid.column
+              style="width:{v:math.division(a: 100, b: 5) -> v:math.round(decimals: 12)}%; margin-right: .3%;"
+              name="col{i.index}"
+              label="Column-{i.index}">
+              <flux:form.variable name="Fluidcontent" value="{deniedContentTypes: 'ikvaachen:GridBuilder.html, ikvaachen:Swiper.html'}" />
+              </flux:grid.column>
+            </v:iterator.for>
+          </f:then>
+        </f:if>
+        <f:if condition="{layout} == 6">
+          <f:then>
+              <flux:grid.column
+              style="width:24%; margin-right: .3%;"
+              name="col-left"
+              label="Column-4">
+              <flux:form.variable name="Fluidcontent" value="{deniedContentTypes: 'ikvaachen:GridBuilder.html, ikvaachen:Swiper.html'}" />
+              </flux:grid.column>
+              <flux:grid.column
+              style="width:75%; margin-right: .3%;"
+              name="col-right"
+              label="Column-8">
+              <flux:form.variable name="Fluidcontent" value="{deniedContentTypes: 'ikvaachen:GridBuilder.html, ikvaachen:Swiper.html'}" />
+              </flux:grid.column>
+          </f:then>
+        </f:if>
+        <f:if condition="{layout} == 7">
+          <f:then>
+              <flux:grid.column
+              style="width:18%; margin-right: .3%;"
+              name="col-left"
+              label="Column-3">
+              <flux:form.variable name="Fluidcontent" value="{deniedContentTypes: 'ikvaachen:GridBuilder.html, ikvaachen:Swiper.html'}" />
+              </flux:grid.column>
+              <flux:grid.column
+              style="width:81%; margin-right: .3%;"
+              name="col-right"
+              label="Column-9">
+              <flux:form.variable name="Fluidcontent" value="{deniedContentTypes: 'ikvaachen:GridBuilder.html, ikvaachen:Swiper.html'}" />
+              </flux:grid.column>
+          </f:then>
+        </f:if>
+        <f:if condition="{layout} == 8">
+          <f:then>
+              <flux:grid.column
+              style="width:49%; margin-right: .3%;"
+              name="col-left"
+              label="Column-6">
+              <flux:form.variable name="Fluidcontent" value="{deniedContentTypes: 'ikvaachen:GridBuilder.html, ikvaachen:Swiper.html'}" />
+              </flux:grid.column>
+              <flux:grid.column
+              style="width:49%; margin-right: .3%;"
+              name="col-right"
+              label="Column-6">
+              <flux:form.variable name="Fluidcontent" value="{deniedContentTypes: 'ikvaachen:GridBuilder.html, ikvaachen:Swiper.html'}" />
+              </flux:grid.column>
+          </f:then>
+        </f:if>
+        <f:if condition="{layout} == 9">
+          <f:then>
+              <flux:grid.column
+              style="width:100%;"
+              name="col-right"
+              label="Column-12">
+              <flux:form.variable name="Fluidcontent" value="{deniedContentTypes: 'ikvaachen:GridBuilder.html, ikvaachen:Swiper.html'}" />
+              </flux:grid.column>
+          </f:then>
+        </f:if>
+      </flux:grid.row>
+    </flux:grid>
+
+  </flux:form>
+</f:section>
+
+<f:section name="Preview">
+  <flux:widget.grid />
+</f:section>
+
+<f:section name="Main">
+  <f:if condition="{color} == 2">
+    <f:then>
+      <section class="grid alternate" id="{record.uid}">
+    </f:then>
+    <f:else>
+      <section class="grid" id="{record.uid}">
+    </f:else>
+  </f:if>
+    <div class="container">
+      <div class="row">
+        <f:if condition="{layout} == 1">
+          <f:then>
+            <v:iterator.for from="1" to="12" iteration="i" step="1">
+              <div class="col-md-1">
+                <flux:content.render area="col{i.index}" />
+              </div>
+            </v:iterator.for>
+          </f:then>
+        </f:if>
+        <f:if condition="{layout} == 2">
+          <f:then>
+            <v:iterator.for from="1" to="6" iteration="i" step="1">
+              <div class="col-md-2">
+                <flux:content.render area="col{i.index}" />
+              </div>
+            </v:iterator.for>
+          </f:then>
+        </f:if>
+        <f:if condition="{layout} == 3">
+          <f:then>
+            <v:iterator.for from="1" to="4" iteration="i" step="1">
+              <div class="col-md-3">
+                <flux:content.render area="col{i.index}" />
+              </div>
+            </v:iterator.for>
+          </f:then>
+        </f:if>
+        <f:if condition="{layout} == 4">
+          <f:then>
+            <v:iterator.for from="1" to="3" iteration="i" step="1">
+              <div class="col-md-4">
+                <flux:content.render area="col{i.index}" />
+              </div>
+            </v:iterator.for>
+          </f:then>
+        </f:if>
+        <f:if condition="{layout} == 5">
+          <f:then>
+            <v:iterator.for from="1" to="5" iteration="i" step="1">
+              <div class="col-md-5th">
+                <flux:content.render area="col{i.index}" />
+              </div>
+            </v:iterator.for>
+          </f:then>
+        </f:if>
+        <f:if condition="{layout} == 6">
+          <f:then>
+              <div class="col-md-4">
+                <flux:content.render area="col-left" />
+              </div>
+              <div class="col-md-8">
+                <flux:content.render area="col-right" />
+              </div>
+          </f:then>
+        </f:if>
+        <f:if condition="{layout} == 7">
+          <f:then>
+              <div class="col-md-3">
+                <flux:content.render area="col-left" />
+              </div>
+              <div class="col-md-9">
+                <flux:content.render area="col-right" />
+              </div>
+          </f:then>
+        </f:if>
+        <f:if condition="{layout} == 8">
+          <f:then>
+              <div class="col-md-6">
+                <flux:content.render area="col-left" />
+              </div>
+              <div class="col-md-6">
+                <flux:content.render area="col-right" />
+              </div>
+          </f:then>
+        </f:if>
+        <f:if condition="{layout} == 9">
+          <f:then>
+              <div class="col-md-12">
+                <flux:content.render area="col-right" />
+              </div>
+          </f:then>
+        </f:if>
+      </div>
+    </div>
+  </section>
+</f:section>

@@ -1,0 +1,38 @@
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"
+	xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+	xmlns:flux="http://typo3.org/ns/FluidTYPO3/Flux/ViewHelpers"
+	xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers">
+
+	<f:layout name="Content" />
+
+	<f:section name="Configuration">
+		<flux:form id="contactbox" options="{group: 'FCE'}" label="Iconbox">
+			<flux:field.input name="iconbox-title" required="true" label="Iconbox: Titel" />
+			<flux:field.text name="iconbox-text" required="true" label="Iconbox: Text" />
+			<flux:field.input name="iconbox-icon" required="true" label="Iconbox: FontAwesome Icon" />
+			<flux:field.input name="iconbox-link" required="true" label="Iconbox: Link">
+				<flux:wizard.link activeTab="'page'" />
+			</flux:field.input>
+		</flux:form>
+	</f:section>
+
+	<f:section name="Preview">
+		<p><strong>Iconbox:</strong></p>
+		<!-- If you wish, place custom backend preview content here -->
+		<p>{iconbox-title}<br />{iconbox-text}</p>
+		<flux:widget.grid />
+	</f:section>
+
+	<f:section name="Main">
+		<f:if condition="{iconbox-title}">
+			<div class="box-icon box-icon-side box-icon-color box-icon-round">
+				<i class="fa {iconbox-icon}"></i>
+				<a class="box-icon-title" href="#">
+					<h2><span>{iconbox-title}</span></h2>
+				</a>
+				<p>{iconbox-text}</p>
+				<a class="box-icon-more font-lato weight-300" href="<v:uri.typolink configuration="{parameter: iconbox-link}"></v:uri.typolink>">Learn More</a>
+			</div>
+		</f:if>
+	</f:section>
+</div>

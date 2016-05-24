@@ -1,0 +1,47 @@
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"
+	xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+	xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers"
+	xmlns:flux="http://typo3.org/ns/FluidTYPO3/Flux/ViewHelpers">
+
+	<f:layout name="Page" />
+
+	<f:section name="Configuration">
+		<flux:form id="standard" label="Standard">
+
+		</flux:form>
+		<flux:grid>
+			<flux:grid.row>
+				<flux:grid.column colPos="100" colspan="4" label="Hauptinhalt" name="main" />
+			</flux:grid.row>
+		</flux:grid>
+	</f:section>
+
+	<f:section name="Topbar">
+        <f:render partial="Page/Topbar" />
+	</f:section>
+
+	<f:section name="Header">
+        <f:render partial="Page/Header" />
+	</f:section>
+
+	<f:section name="Main">
+		<v:content.render column="100" />
+	</f:section>
+
+	<f:section name="Footer">
+        <f:render partial="Page/Footer" />
+	</f:section>
+
+	<f:section name="Sidenavi">
+        <f:render partial="Page/Sidenavi" />
+	</f:section>
+
+	<f:section name="Totop">
+				<f:render partial="Page/Totop" />
+	</f:section>
+
+	<f:section name="Preloader">
+				<f:render partial="Page/Preloader" />
+	</f:section>
+
+</div>

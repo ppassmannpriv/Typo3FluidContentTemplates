@@ -1,0 +1,35 @@
+<div xmlns="http://www.w3.org/1999/xhtml"
+ xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers"
+ xmlns:f="http://typo3.org/ns/fluid/ViewHelpers">
+
+ <f:section name="MenuRecursionStep">
+ <f:if condition="{currentPage.hasSubPages}">
+ <v:page.menu pageUid="{currentPage.uid}">
+ <f:if condition="{menu}">
+ <ul>
+ <f:for each="{menu}" as="currentSubPage">
+ <li class="{currentSubPage.class}">
+ <v:page.link pageUid="{currentSubPage.uid}" />
+ <f:render section="MenuRecursionStep" arguments="{currentPage: '{currentSubPage}'}" />
+ </li>
+ </f:for>
+ </ul>
+ </f:if>
+ </v:page.menu>
+ </f:if>
+ </f:section>
+
+ <f:section name="MenuRecursionStart">
+ <v:page.menu pageUid="{recursionStartPageUid}">
+ <f:if condition="{menu}">
+ <ul>
+ <f:for each="{menu}" as="startLevelPage">
+ <li class="{startLevelPage.class}"><v:page.link pageUid="{startLevelPage.uid}" />
+ <f:render section="MenuRecursionStep" arguments="{currentPage: '{startLevelPage}'}"/>
+ </li>
+ </f:for>
+ </ul>
+ </f:if>
+ </v:page.menu>
+ </f:section>
+</div>

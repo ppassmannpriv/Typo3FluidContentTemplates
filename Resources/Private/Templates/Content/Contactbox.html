@@ -1,0 +1,48 @@
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"
+	xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+	xmlns:flux="http://typo3.org/ns/FluidTYPO3/Flux/ViewHelpers"
+	xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers">
+
+	<f:layout name="Content" />
+
+	<f:section name="Configuration">
+		<flux:form id="contactbox" options="{group: 'FCE'}" label="Kontakt">
+			<flux:field.file name="contact-image" allowed="jpg, jpeg, png, gif" maxItems="1" showThumbnails="1" required="true" label="Kontakt: Bild" />
+			<flux:field.input name="contact-name" required="true" label="Kontakt: Name"/>
+			<flux:field.input name="contact-beruf" required="true" label="Kontakt: Beruf"/>
+			<flux:field.input name="contact-position" required="true" label="Kontakt: Position"/>
+			<flux:field.input name="contact-phone" required="true" label="Kontakt: Telefon"/>
+			<flux:field.input name="contact-email" required="true" label="Kontakt: E-Mail"/>
+			<flux:field.text name="contact-text" required="true" label="Kontakt: Text"/>
+		</flux:form>
+	</f:section>
+
+	<f:section name="Preview">
+		<p><strong>Kontaktbox:</strong></p>
+		<!-- If you wish, place custom backend preview content here -->
+		<p>{contact-name}<br />{contact-email}</p>
+		<flux:widget.grid />
+	</f:section>
+
+	<f:section name="Main">
+		<f:if condition="{contact-name}">
+			<!--
+				SWIPPER SLIDER PARAMS
+
+				data-effect="slide|fade|coverflow"
+				data-autoplay="2500|false"
+			-->
+			<div class="thumbnail">
+				<img class="img-responsive" src="{contact-image}" alt="" />
+				<div class="caption">
+					<h4 class="nomargin">{contact-name}</h4>
+					<small class="margin-bottom-20 block">{contact-beruf}</small>
+					<small class="margin-bottom-5 block">{contact-position}</small>
+					<small class="margin-bottom-5 block"><i class="fa fa-phone"></i> {contact-phone}</small>
+					<small class="margin-bottom-20 block"><i class="fa fa-envelope"></i> {contact-email}</small>
+					<p>{contact-text}</p>
+				</div>
+			</div>
+		</f:if>
+	</f:section>
+</div>

@@ -1,0 +1,187 @@
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"
+	xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+	xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers"
+	xmlns:flux="http://typo3.org/ns/FluidTYPO3/Flux/ViewHelpers">
+
+			<!--
+				AVAILABLE HEADER CLASSES
+
+				Default nav height: 96px
+				.header-md 		= 70px nav height
+				.header-sm 		= 60px nav height
+
+				.noborder 		= remove bottom border (only with transparent use)
+				.transparent	= transparent header
+				.translucent	= translucent header
+				.sticky			= sticky header
+				.static			= static header
+				.dark			= dark header
+				.bottom			= header on bottom
+
+				shadow-before-1 = shadow 1 header top
+				shadow-after-1 	= shadow 1 header bottom
+				shadow-before-2 = shadow 2 header top
+				shadow-after-2 	= shadow 2 header bottom
+				shadow-before-3 = shadow 3 header top
+				shadow-after-3 	= shadow 3 header bottom
+
+				.clearfix		= required for mobile menu, do not remove!
+
+				Example Usage:  class="clearfix sticky header-sm transparent noborder"
+			-->
+      <div id="header" class="sticky clearfix">
+
+				<!-- TOP NAV -->
+				<header id="topNav">
+					<div class="container">
+
+						<!-- Mobile Menu Button -->
+						<button class="btn btn-mobile" data-toggle="collapse" data-target=".nav-main-collapse">
+							<i class="fa fa-bars"></i>
+						</button>
+
+						<!-- BUTTONS -->
+						<ul class="pull-right nav nav-pills nav-second-main">
+
+							<!-- SEARCH -->
+							<li class="search">
+								<a href="javascript:;">
+									<i class="fa fa-search"></i>
+								</a>
+								<div class="search-box">
+									<form action="page-search-result-1.html" method="get">
+										<div class="input-group">
+											<input type="text" name="src" placeholder="Search" class="form-control" />
+											<span class="input-group-btn">
+												<button class="btn btn-primary" type="submit">Search</button>
+											</span>
+										</div>
+									</form>
+								</div>
+							</li>
+							<!-- /SEARCH -->
+
+
+
+						</ul>
+						<!-- /BUTTONS -->
+
+						<!-- Logo -->
+						<a class="logo pull-left" href="index.html">
+							<img src="graphodata/images/logo_s.png" alt="" />
+						</a>
+
+						<!--
+							Top Nav
+
+							AVAILABLE CLASSES:
+							submenu-dark = dark sub menu
+						-->
+            <f:render section="MenuRecursionStart" />
+
+            <f:section name="MenuRecursionStep">
+              <f:if condition="{currentPage.hasSubPages}">
+                <v:page.menu pageUid="{currentPage.uid}">
+                  <f:if condition="{menu}">
+                    <f:if condition="{megamenu} == 1">
+                      <f:then>
+                        <ul class="dropdown-menu">
+                          <li>
+                            <div class="row">
+                              <f:for each="{menu}" as="currentSubPage">
+                                <div class="col-md-5th">
+                                  <ul class="list-unstyled">
+                                    <li>
+                                      <v:page.link pageUid="{currentSubPage.uid}" />
+                                      <f:render section="MenuRecursionMegamenu" arguments="{currentPage: '{currentSubPage}'}" />
+                                    </li>
+                                  </ul>
+                                </div>
+                              </f:for>
+                            </div>
+                          </li>
+                        </ul>
+                      </f:then>
+                      <f:else>
+                        <ul class="dropdown-menu">
+                          <f:for each="{menu}" as="currentSubPage">
+                            <li class="{currentSubPage.class}">
+                              <v:page.link pageUid="{currentSubPage.uid}" />
+                              <f:render section="MenuRecursionStep" arguments="{currentPage: '{currentSubPage}'}" />
+                            </li>
+                          </f:for>
+                        </ul>
+                      </f:else>
+                    </f:if>
+                  </f:if>
+                </v:page.menu>
+              </f:if>
+            </f:section>
+
+            <f:section name="MenuRecursionMegamenu">
+              <f:if condition="{currentPage.hasSubPages}">
+                <v:page.menu pageUid="{currentPage.uid}">
+                  <f:if condition="{menu}">
+                    <f:then>
+                      <ul class="list-unstyled">
+                        <f:for each="{menu}" as="currentSubPage">
+                          <li>
+                            <v:page.link pageUid="{currentSubPage.uid}" />
+                            <f:render section="MenuRecursionMegamenu" arguments="{currentPage: '{currentSubPage}'}" />
+                          </li>
+                        </f:for>
+                      </ul>
+                    </f:then>
+                  </f:if>
+                </v:page.menu>
+              </f:if>
+            </f:section>
+
+            <f:section name="MenuRecursionStart">
+              <v:page.menu pageUid="1">
+                <f:if condition="{menu}">
+                  <div class="navbar-collapse pull-right nav-main-collapse collapse">
+                    <nav class="nav-main">
+                      <ul id="topMain" class="nav nav-pills nav-main">
+                        <f:for each="{menu}" as="startLevelPage">
+                          <f:if condition="{startLevelPage.class}">
+                            <f:then>
+                              <f:if condition="{startLevelPage.megamenu} == 1">
+                                <f:then>
+                                  <li class="dropdown mega-menu">
+                                </f:then>
+                                <f:else>
+                                  <li class="dropdown">
+                                </f:else>
+                              </f:if>
+                                <v:page.link pageUid="{startLevelPage.uid}" class="dropdown-toggle" additionalAttributes="{aria-expanded: 'false'}" data="{toggle: 'dropdown'}" />
+                              </f:then>
+                              <f:else>
+                              <li>
+                                <v:page.link pageUid="{startLevelPage.uid}" />
+                              </f:else>
+                            </f:if>
+                            <f:if condition="{startLevelPage.megamenu} == 1">
+                              <f:then>
+                                <f:render section="MenuRecursionStep" arguments="{currentPage: '{startLevelPage}', megamenu: 1}"/>
+                              </f:then>
+                              <f:else>
+                                <f:render section="MenuRecursionStep" arguments="{currentPage: '{startLevelPage}', megamenu: 0}"/>
+                              </f:else>
+                            </f:if>
+                          </li>
+                        </f:for>
+                      </ul>
+                    </nav>
+                  </div>
+                </f:if>
+              </v:page.menu>
+            </f:section>
+
+
+
+					</div>
+				</header>
+
+			</div>
+</div>

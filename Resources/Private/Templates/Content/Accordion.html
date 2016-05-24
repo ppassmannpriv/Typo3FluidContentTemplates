@@ -1,0 +1,48 @@
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"
+	xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+	xmlns:flux="http://typo3.org/ns/FluidTYPO3/Flux/ViewHelpers"
+	xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers">
+
+	<f:layout name="Content" />
+
+	<f:section name="Configuration">
+		<flux:form id="accordion" options="{group: 'FCE'}" label="Accordion">
+			<flux:form.section name="accordion-elements">
+				<flux:form.object name="accordion-element-container">
+					<!-- Insert fields, sheets, grid, form section objects etc. here, in this flux:flexform tag -->
+					<flux:field.input name="accordion-title" required="true" />
+					<flux:field.text name="accordion-content" required="true" />
+				</flux:form.object>
+			</flux:form.section>
+		</flux:form>
+	</f:section>
+
+	<f:section name="Preview">
+		<p><strong>Accordion:</strong></p>
+		<!-- If you wish, place custom backend preview content here -->
+		<p>Accordion-Elements: {accordion-elements->f:count()}</p>
+	</f:section>
+
+	<f:section name="Main">
+		<f:if condition="{accordion-elements}">
+			<f:then>
+			<f:if condition="{record.header}">
+				<f:then>
+					<h2><span>{record.header}</span></h2>
+				</f:then>
+			</f:if>
+				<div class="toggle toggle-transparent-body">
+					<f:for each="{accordion-elements}" as="element" iteration="iteration">
+						<div class="toggle">
+							<label>{element.accordion-element-container.accordion-title}</label>
+							<div class="toggle-content">
+								<p>{element.accordion-element-container.accordion-content}</p>
+							</div>
+						</div>
+					</f:for>
+				</div>
+			</f:then>
+		</f:if>
+	</f:section>
+
+</div>
